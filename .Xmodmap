@@ -1,0 +1,22 @@
+!!!!!
+! cycle Ctrl_l, Caps_Lock, Esc
+remove Lock = Caps_Lock
+remove Control = Control_L
+! keycode 9: Escape
+keycode 9 = Caps_Lock
+! keycode 66: Caps_Lock
+keycode 66 = Control_L
+! keycode 37: Control_L
+keycode 37 = Escape
+add Lock = Caps_Lock
+add Control = Control_L
+
+!!!!
+! swap hanja and windows key for i3 mod
+remove  Mod4 = Super_L
+! keycode 133: Window Button
+keycode 133 = Hangul_Hanja
+! keycode 131: Hanja
+keycode 131 = Super_L
+! keycode 133: Window Button
+add Mod4 = Super_L
