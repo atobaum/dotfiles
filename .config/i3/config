@@ -183,6 +183,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $default
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $default-sink -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $default-sink toggle # mute sound
 
+# keyboard backlight control
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
 # always float certain windows
 for_window [window_role="About"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -194,6 +198,7 @@ for_window [window_type="menu"] floating enable
 
 exec --no-startup-id ~/.config/i3/startup.sh
 exec --no-startup-id dunst
+exec --no-startup-id unclutter
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/i3/scripts/set_wallpaper.sh
 exec --no-startup-id i3-msg workspace number 1

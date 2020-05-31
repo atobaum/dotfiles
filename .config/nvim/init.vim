@@ -100,9 +100,10 @@ let g:vimwiki_list=[
 	\ {
 	\ 'path': '~/git/gh-wiki/content/wiki',
 	\ 'ext': '.md',
+	\ 'index': 'wiki_index'
 	\ },
 	\ {
-	\ 'path': '~/vimwiki',
+	\ 'path': '~/Dropbox/vimwiki',
 	\ 'ext': '.md',
 	\ },
 	\ ]

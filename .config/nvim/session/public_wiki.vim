@@ -7,11 +7,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 index.md
+badd +0 wiki_index.md
 argglobal
 %argdel
-$argadd index.md
-edit index.md
+$argadd wiki_index.md
+edit wiki_index.md
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
