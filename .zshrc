@@ -95,3 +95,4 @@ alias rm="rm -i"
 alias vim=\\nvim vvim=\\vim
 alias open="xdg-open &>/dev/null"
 alias clipboard="xclip -selection clipboard"
+. /usr/share/autojump/autojump.zsh
