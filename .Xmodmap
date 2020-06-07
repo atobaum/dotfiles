@@ -20,3 +20,13 @@ keycode 133 = Hangul_Hanja
 keycode 131 = Super_L
 ! keycode 133: Window Button
 add Mod4 = Super_L
+
+! Alt_R for Hangul, Ctrl_R for Hanja
+keycode 108 = Hangul
+keycode 105 = Hangul_Hanja
+
+keycode 130 = Mode_switch
+keysym h = h H Left
+keysym l = l L Right
+keysym k = k K Up
+keysym j = j J Down
