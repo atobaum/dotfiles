@@ -6,9 +6,16 @@ set guifont=D2Coding_ligature:h12
 set ts=4
 set sw=4
 set sts=4
-set nu
 set backspace=indent,eol,start
 set mouse=a
+
+set number relativenumber
+set nu rnu
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 "검색할 때 다 하이라이팅
 set hls
@@ -68,9 +75,13 @@ Plug 'tpope/vim-surround'
 Plug 'tmhedberg/matchit'
 Plug 'jiangmiao/auto-pairs'
 
-Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clangd-completer --go-completer --ts-completer'}
+" Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clangd-completer --go-completer --ts-completer'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
+
+" tsx highlight
+Plug 'ianks/vim-tsx'
 
 " ctags
 Plug 'vim-scripts/ctags.vim'
@@ -144,29 +155,29 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips']
 
+" coc.nvim
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " ycm/ you complete me
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion=['<C-p>']
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_filetype_blacklist = {
-	\'markdown': 1,
-	\'vimwiki': 1
-	\}
+" let g:ycm_key_list_select_completion = ['<C-n>']
+" let g:ycm_key_list_previous_completion=['<C-p>']
+" let g:ycm_server_python_interpreter = '/usr/bin/python3'
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" let g:ycm_complete_in_strings = 1
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_min_num_of_chars_for_completion = 1
+" let g:ycm_filetype_blacklist = {
+" 	\'markdown': 1,
+" 	\'vimwiki': 1
+" 	\}
 
 " crtlp setting
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip  
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-  \}
 let g:ctrlp_working_path_mode='r'
 let g:ctrlp_custom_ignre = {
 	\ 'dir': '\.git$\|tmp$\|node_modules$',
-	\ 'file': '\v\.(exe|dll)$'
+	\ 'file': '\v\.(exe|dll|png|jpg|jpng)$\|tags'
 	\ }
 
 " NERDTree map
