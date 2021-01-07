@@ -92,7 +92,6 @@ filetype plugin indent on    " required
 
 " startify
 let g:startify_lists = [
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
           \ { 'type': 'files',     'header': ['   MRU']            },
           \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
@@ -101,26 +100,9 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
 	\ { 'rc': '~/.config/nvim/init.vim' }
 	\ ]
-let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_change_to_vcs_root = 1
 let g:startify_files_number = 5
 let g:startify_custom_header = ''
-
-" vimwiki
-let g:vimwiki_list=[
-	\ {
-	\ 'path': '~/git/gh-wiki/content/wiki',
-	\ 'ext': '.md',
-	\ 'index': 'wiki_index'
-	\ },
-	\ {
-	\ 'path': '~/Dropbox/vimwiki',
-	\ 'ext': '.md',
-	\ },
-	\ ]
-let g:vimwiki_conceallevel = 0
-let g:vimwiki_global_ext = 0
-let g:vimwiki_table_mappings = 0	"for compatible with ultisnip"
 
 " tagbar
 "set tag=./tags

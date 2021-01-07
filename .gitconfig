@@ -1,3 +1,8 @@
 [user]
 	email = atobaum@gmail.com
 	name = atobaum
+	signingkey = 
+[core]
+    excludesfile = ~/.config/.gitignore
+[commit]
+    gpgsign = true

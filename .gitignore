@@ -1,7 +1,0 @@
-# ctags
-tags
-
-*.pyc
-*.out
-
-node_modules
