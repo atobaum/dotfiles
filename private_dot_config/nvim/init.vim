@@ -186,6 +186,8 @@ let g:lightline = {
 			\ 	}
 			\ }
 
+let g:python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
+
 "theme
 set t_Co=256
 syntax enable
