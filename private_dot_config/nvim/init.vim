@@ -3,8 +3,9 @@ set enc=utf8
 language messages en_US.UTF-8
 set guifont=D2Coding_ligature:h12
 
-set ts=4
-set sw=4
+set expandtab
+set tabstop=2
+set shiftwidth=2
 set sts=4
 set backspace=indent,eol,start
 set mouse=a
