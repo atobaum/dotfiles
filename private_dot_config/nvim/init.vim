@@ -47,6 +47,8 @@ noremap <A-k> <C-w>k
 noremap <A-l> <C-w>l
 
 call plug#begin('~/.vim/plugged')
+" utils
+Plug 'nvim-lua/plenary.nvim'
 
 " theme
 Plug 'nanotech/jellybeans.vim'
@@ -69,7 +71,7 @@ Plug 'scrooloose/syntastic'
 
 " quick move
 Plug 'Lokaltog/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 Plug 'tpope/vim-surround'
 Plug 'tmhedberg/matchit'
@@ -109,15 +111,7 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips']
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" crtlp setting
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip  
-let g:ctrlp_working_path_mode='r'
-let g:ctrlp_custom_ignre = {
-	\ 'dir': '\.git$\|tmp$\|node_modules$',
-	\ 'file': '\v\.(exe|dll|png|jpg|jpng)$\|tags'
-	\ }
-
-" nerd-tree
+" nvim-tree
 map <Leader>nt <ESC>:NvimTreeToggle<CR>
 
 " syntastic
