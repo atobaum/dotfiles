@@ -60,13 +60,12 @@ Plug 'tpope/vim-fugitive'
 " numberline 옆에 추가/삭제 확인
 Plug 'airblade/vim-gitgutter'
 
-Plug 'scrooloose/nerdtree'
+" file explorer
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
-
-" vimwiki
-Plug 'mhinz/vim-startify'
-Plug 'vim-scripts/vimwiki'
 
 " quick move
 Plug 'Lokaltog/vim-easymotion'
@@ -76,18 +75,12 @@ Plug 'tpope/vim-surround'
 Plug 'tmhedberg/matchit'
 Plug 'jiangmiao/auto-pairs'
 
-" Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clangd-completer --go-completer --ts-completer'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 
 " tsx highlight
 Plug 'ianks/vim-tsx'
-
-" ctags
-Plug 'vim-scripts/ctags.vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
 call plug#end()            " required
 filetype plugin indent on    " required
 
@@ -105,32 +98,6 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_files_number = 5
 let g:startify_custom_header = ''
 
-" tagbar
-"set tag=./tags
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_width = 35
-let g:tagbar_type_vimwiki = {
-    \ 'ctagstype' : 'vimwiki',
-    \ 'sort': 0,
-    \ 'kinds' : [
-		\ 'h:Heading',
-    \ ],
-	\ 'deffile': '~/.config/ctags/vimwiki.ctags'
-	\ }
-let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-            \ 'h:headings',
-            \ 'l:links',
-            \ 'i:images'
-        \ ],
-    \ 'sort' : 0,
-	\ }
-augroup vimwiki_tagbar
-    autocmd BufRead,BufNewFile *wiki/*.md TagbarOpen
-    autocmd VimLeavePre *.md TagbarClose
-augroup END
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -142,19 +109,6 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips']
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" ycm/ you complete me
-" let g:ycm_key_list_select_completion = ['<C-n>']
-" let g:ycm_key_list_previous_completion=['<C-p>']
-" let g:ycm_server_python_interpreter = '/usr/bin/python3'
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_complete_in_strings = 1
-" let g:ycm_complete_in_comments = 1
-" let g:ycm_min_num_of_chars_for_completion = 1
-" let g:ycm_filetype_blacklist = {
-" 	\'markdown': 1,
-" 	\'vimwiki': 1
-" 	\}
-
 " crtlp setting
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip  
 let g:ctrlp_working_path_mode='r'
@@ -163,8 +117,8 @@ let g:ctrlp_custom_ignre = {
 	\ 'file': '\v\.(exe|dll|png|jpg|jpng)$\|tags'
 	\ }
 
-" NERDTree map
-map <Leader>nt <ESC>:NERDTree<CR>
+" nerd-tree
+map <Leader>nt <ESC>:NvimTreeToggle<CR>
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -205,4 +159,6 @@ let g:airline_powerline_fonts = 1
 if has("syntax")
 	syntax on
 endif
+
+:lua require("init")
 
