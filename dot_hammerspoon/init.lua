@@ -1,7 +1,7 @@
 local f13_mode = hs.hotkey.modal.new()
 
 f13_mode:bind({}, "space", function()
-	hs.application.launchOrFocus("Alacritty")
+	hs.application.launchOrFocus("WezTerm")
 end)
 
 f13_mode:bind({}, "c", function()
