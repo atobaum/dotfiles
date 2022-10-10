@@ -111,9 +111,6 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips']
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" nvim-tree
-map <Leader>nt <ESC>:NvimTreeToggle<CR>
-
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
