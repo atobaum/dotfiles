@@ -3,6 +3,8 @@
 	br = branch
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 	a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
+  publish = push origin HEAD --force-with-lease
+  pub = publish
 [user]
 	email = atobaum@gmail.com
 	name = atobaum
@@ -18,3 +20,5 @@
 	required = true
 [init]
 	defaultBranch = main
+[safe]
+	directory = /usr/local/Homebrew
