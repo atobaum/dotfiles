@@ -109,4 +109,6 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="/usr/local/sbin:$PATH"
 
 eval "$(rbenv init - zsh)"
-
+if [ -x $(command -v direnv) ]; then
+  eval "$(direnv hook zsh)"
+fi
