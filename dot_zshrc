@@ -87,7 +87,7 @@ alias yw='yarn workspace'
 alias ghpr='gh pr checkout'
 alias k='kubectl'
 alias tf='terraform'
-export KUBECONFIG=/Users/abel/.kube/config:/Users/abel/.kube/kubelogin.stage.yml
+export KUBECONFIG=~/.kube/config:~/.kube/kubelogin.stage.yml
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -106,7 +106,10 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 # brew
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+# personal script
+export PATH="$PATH:$HOME/.config/scripts"
 
 eval "$(rbenv init - zsh)"
 if [ -x $(command -v direnv) ]; then
