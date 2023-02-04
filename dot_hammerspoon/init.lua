@@ -1,8 +1,6 @@
 function centerMouse()
-  local screen = hs.window.frontmostWindow():frame()
-  hs.alert.show(screen)
+  local screen = hs.window.focusedWindow():frame()
   local pt = hs.geometry.rectMidPoint(screen)
-  hs.alert.show(pt)
   hs.mouse.absolutePosition(pt)
 end
 
@@ -17,6 +15,7 @@ function toggleApp(name)
     end
 
     hs.application.launchOrFocus(name)
+    centerMouse()
   end
 end
 
@@ -31,4 +30,9 @@ hs.hotkey.bind({}, "f13",
 	function() f13_mode:exit() end
 )
 
+require("modules.inputsource_aurora")
+
 hs.alert.show("hammerspoon loaded")
+
+-- hs.hotkey.bind({'shift'}, 'F1', hs.hints.windowHints)
+-- hs.hotkey.bind({'shift'}, 'F1', hs.reload)
