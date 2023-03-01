@@ -87,12 +87,8 @@ alias yw='yarn workspace'
 alias ghpr='gh pr checkout'
 alias k='kubectl'
 alias tf='terraform'
-export KUBECONFIG=~/.kube/config:~/.kube/kubelogin.stage.yml
+export KUBECONFIG=~/.kube/config:~/.kube/kubelogin.stage.yml:~/.kube/kubelogin.shared.yml
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
@@ -115,3 +111,9 @@ eval "$(rbenv init - zsh)"
 if [ -x $(command -v direnv) ]; then
   eval "$(direnv hook zsh)"
 fi
+
+export NAVI_PATH="$HOME/.config/navi/config.yaml"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
