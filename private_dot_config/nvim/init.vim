@@ -81,8 +81,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 
-" tsx highlight
-Plug 'ianks/vim-tsx'
+" syntax highlight
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()            " required
 filetype plugin indent on    " required
 
