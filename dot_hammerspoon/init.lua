@@ -37,4 +37,26 @@ require("modules.inputsource_aurora")
 hs.alert.show("hammerspoon loaded")
 
 -- hs.hotkey.bind({'shift'}, 'F1', hs.hints.windowHints)
--- hs.hotkey.bind({'shift'}, 'F1', hs.reload)
+
+-- ctrl만 누르면 esc 누르고 영어로 바꾸기
+only_ctrl = false
+ctrl_eventtab = hs.eventtap.new({hs.eventtap.event.types.flagsChanged, hs.eventtap.event.types.keyDown}, function(event)
+    if event:getKeyCode() == hs.keycodes.map.ctrl then
+      -- when pressed ctrl
+      if event:getFlags()['ctrl'] then
+        only_ctrl = true
+      elseif only_ctrl then
+        hs.eventtap.event.newKeyEvent({}, hs.keycodes.map.escape, true):post()
+        hs.eventtap.event.newKeyEvent({}, hs.keycodes.map.escape, false):post()
+
+        -- change keyboard to eng
+        local inputEnglish = "com.apple.keylayout.ABC"
+        hs.keycodes.currentSourceID(inputEnglish)
+      end
+    else
+      only_ctrl = false
+    end
+end):start()
+
+-- for debug
+hs.hotkey.bind({'shift'}, 'F1', hs.reload)
