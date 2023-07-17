@@ -117,6 +117,6 @@ export NAVI_PATH="$HOME/.config/navi/config.yaml"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-if [[ -f "~/.zshrc_custom" ]]; then
-  source ~/.zshrc_custom
-if
+if [[ -f "$HOME/.zshrc_custom" ]]; then
+  source "$HOME/.zshrc_custom"
+fi
