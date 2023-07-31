@@ -61,7 +61,8 @@ ctrl_eventtab = hs.eventtap
 	end)
 	:start()
 
-ctrl_eventtab = hs.eventtap
+-- 마우스 지원 추가
+ctrl_eventtab_2 = hs.eventtap
 	.new({ hs.eventtap.event.types.leftMouseDown, hs.eventtap.event.types.rightMouseMown }, function(event)
 		only_ctrl = false
 	end)
