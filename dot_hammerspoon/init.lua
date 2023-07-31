@@ -35,8 +35,6 @@ end)
 
 require("modules.inputsource_aurora")
 
-hs.alert.show("hammerspoon loaded")
-
 -- hs.hotkey.bind({'shift'}, 'F1', hs.hints.windowHints)
 
 -- ctrl만 누르면 esc 누르고 영어로 바꾸기
@@ -63,10 +61,12 @@ ctrl_eventtab = hs.eventtap
 
 -- 마우스 지원 추가
 ctrl_eventtab_2 = hs.eventtap
-	.new({ hs.eventtap.event.types.leftMouseDown, hs.eventtap.event.types.rightMouseMown }, function(event)
+	.new({ hs.eventtap.event.types.leftMouseDown, hs.eventtap.event.types.rightMouseDown }, function(event)
 		only_ctrl = false
 	end)
 	:start()
 
 -- for debug
 hs.hotkey.bind({ "shift" }, "F1", hs.reload)
+
+hs.alert.show("hammerspoon loaded")
