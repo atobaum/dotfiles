@@ -28,6 +28,32 @@ f13_mode:bind({}, "v", toggleApp("Visual Studio Code"))
 f13_mode:bind({}, "s", toggleApp("Slack"))
 f13_mode:bind({}, "m", toggleApp("Spark"))
 
+local chooser = hs.chooser.new(function(choice)
+	if choice.type == "bookmark" then
+		hs.execute("open " .. choice.url)
+	else
+		hs.alert.show(choice.text)
+	end
+end)
+
+f13_mode:bind({}, "r", function()
+	local list = {}
+	table.insert(list, {
+		text = "Readwise",
+		subText = "화면에 첫 번째 알림을 띄웁니다",
+		type = "bookmark",
+		url = "https://read.readwise.io/",
+		-- image = hs.image.imageFromPath( 이미지 주소 .. '.jpg'),
+	})
+	table.insert(list, {
+		text = "alert2",
+		subText = "화면에 두 번째 알림을 띄웁니다",
+		-- image = hs.image.imageFromPath( 이미지 주소 .. '.jpg'),
+	})
+	chooser:choices(list)
+	chooser:show()
+end)
+
 hs.hotkey.bind({}, "f13", function()
 	f13_mode:enter()
 end, function()
