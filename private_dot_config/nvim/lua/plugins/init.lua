@@ -19,6 +19,7 @@ local plugins = {
     lazy = false,
     priority = 1000,
     opts = {
+      style = "day",
       transparent = true
     },
   },
