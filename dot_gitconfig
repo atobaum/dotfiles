@@ -22,3 +22,5 @@
 	defaultBranch = main
 [safe]
 	directory = /usr/local/Homebrew
+[gpg]
+	program = /usr/local/bin/gpg
