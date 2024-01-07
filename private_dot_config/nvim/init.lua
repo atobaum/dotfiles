@@ -9,6 +9,9 @@ vim.opt.backspace = 'indent,eol,start'
 vim.opt.mouse = 'a'
 
 vim.opt.number = true
+vim.wo.relativenumber = true
+
+vim.g.mapleader = ' '
 
 -- 검색할 때 다 하이라이팅
 vim.opt.hls = true
