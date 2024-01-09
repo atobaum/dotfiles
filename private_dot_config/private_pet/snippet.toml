@@ -1,0 +1,9 @@
+[[snippets]]
+  description = "clear uncessary branches"
+  command = "git trim  --delete 'stray' --delete 'merged-local' -p main,stage,dev"
+  output = ""
+
+[[snippets]]
+  description = "Show my public IP"
+  command = "dig TXT +short ip @dns.toys"
+  output = ""
