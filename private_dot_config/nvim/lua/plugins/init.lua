@@ -86,6 +86,26 @@ local plugins = {
             -- Configuration here, or leave empty to use defaults
         })
     end
+  },
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy"
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
+    config = function()
+       require('gitsigns').setup({
+         signs = {
+           add = {
+             hl = 'GitSignsAdd',
+             text = '+',
+             numhl='GitSignsAddNr',
+             linehl='GitSignsAddLn'
+           },
+         }
+       })
+    end
   }
 }
 
