@@ -86,7 +86,7 @@ alias yw='yarn workspace'
 alias ghpr='gh pr checkout'
 alias k='kubectl'
 alias tf='terraform'
-export KUBECONFIG=~/.kube/config:~/.kube/kubelogin.stage.yml:~/.kube/kubelogin.shared.yml:~/.kube/gov-config.stage.yaml:~/.kube/gov-config.shared.yaml
+export KUBECONFIG=~/.kube/config:~/.kube/kubelogin.stage.yml:~/.kube/kubelogin.shared.yml:~/.kube/gov-config.stage.yaml:~/.kube/gov-config.shared.yaml:~/.kube/gov-config.shared-proxy.yaml
 
 
 # pyenv
