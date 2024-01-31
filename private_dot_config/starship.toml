@@ -1,0 +1,8 @@
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
