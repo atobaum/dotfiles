@@ -22,7 +22,8 @@ end
 local f13_mode = hs.hotkey.modal.new()
 
 f13_mode:bind({}, "space", toggleApp("kitty"))
-f13_mode:bind({}, "b", toggleApp("Google Chrome"))
+f13_mode:bind({}, "b", toggleApp("Arc"))
+f13_mode:bind({}, "c", toggleApp("Google Chrome"))
 f13_mode:bind({}, "n", toggleApp("Obsidian"))
 f13_mode:bind({}, "v", toggleApp("Visual Studio Code"))
 f13_mode:bind({}, "s", toggleApp("Slack"))
