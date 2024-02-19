@@ -1,26 +1,50 @@
 [alias]
-	ci = commit
-	br = branch
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 	a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
-  publish = push origin HEAD --force-with-lease
-  pub = publish
+
 [user]
 	email = atobaum@gmail.com
 	name = atobaum
-	signingkey = E33CDB54042B2D46
+  # signingkey = E33CDB54042B2D46
+  #
 [core]
-    excludesfile = ~/.config/.gitignore
+  excludesfile = ~/.config/.gitignore
+
+[diff]
+  algorithm = histogram
+
 [commit]
-    gpgsign = true
+  verbose = true
+    # gpgsign = true
+    #
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [init]
 	defaultBranch = main
+
 [safe]
 	directory = /usr/local/Homebrew
+
 [gpg]
 	program = /usr/local/bin/gpg
+
+[pull]
+  # git pull하면 git pull --rebase 하기
+  rebase = true
+
+[rebase]
+  autosquash = true
+  # rebase 전후로 stash and stash pop
+  autostach = true
+
+[rerere]
+  # This enables rerere (”reuse recovered resolution”), which remembers how you resolved merge conflicts during a git rebase and automatically resolves conflicts for you when it can
+  enabled = true
+
+[merge]
+  conflictstyle = zdiff3
+

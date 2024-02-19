@@ -19,3 +19,14 @@ brew dump
 
 - Chrome Browser
 - Arc Browser
+
+## Configure Mac
+
+- install nerd font
+
+- install nvm `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`
+- install keyboard
+- keyboard shortcut
+  - disable spotlight
+  - set up changing language to cmd + space
+- install 구름 입력기 <https://github.com/gureum/gureum>
