@@ -5,8 +5,8 @@
 [user]
 	email = atobaum@gmail.com
 	name = atobaum
-  # signingkey = E33CDB54042B2D46
-  #
+  signingkey = 62FD93D08A248D67
+  
 [core]
   excludesfile = ~/.config/.gitignore
 
@@ -15,8 +15,8 @@
 
 [commit]
   verbose = true
-    # gpgsign = true
-    #
+  gpgsign = true
+ 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -30,7 +30,7 @@
 	directory = /usr/local/Homebrew
 
 [gpg]
-	program = /usr/local/bin/gpg
+  # program = /opt/homebrew/bin/gpg
 
 [pull]
   # git pull하면 git pull --rebase 하기
