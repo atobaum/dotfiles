@@ -26,7 +26,5 @@ vim.opt.ignorecase = true
 -- 검색할때 패턴에 대문자 있으면 ignorecase 없애고 대소문자 판별
 vim.opt.smartcase = true
 
-vim.go.python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
-
 require('plugins')
 require("core/keymapping")
