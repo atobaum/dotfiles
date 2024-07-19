@@ -9,6 +9,16 @@
   output = ""
 
 [[snippets]]
+  description = "Show my public IP2"
+  command = "curl ifconfig.me"
+  output = ""
+
+[[snippets]]
+  description = "Show weather"
+  command = "curl wttr.in"
+  output = ""
+
+[[snippets]]
   description = "change xlsx 비대면 바우처 format"
   command = "xlsx2csv \\(22년도\\)\\ 1월\\ 로그\\ 기록\\ 추출\\ 대상.xlsx | jq -sR 'split(\"\\n\")' | jq -r \"map(\\\"'\\\"+.+\\\"'\\\") | join(\\\",\\\")\" | pbcopy"
   output = ""
