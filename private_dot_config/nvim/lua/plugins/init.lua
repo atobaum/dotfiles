@@ -36,7 +36,7 @@ if vim.g.vscode then
 
   require("lazy").setup(plugins)
 
-  require("plugins/indent-blankline")
+  -- require("plugins/indent-blankline")
 else
   local plugins = {
     {
@@ -62,6 +62,10 @@ else
         -- refer to the configuration section below
         -- https://github.com/folke/which-key.nvim
       }
+    },
+    {
+      "easymotion/vim-easymotion",
+      version = "*",
     },
     {
       "nvim-tree/nvim-tree.lua",
@@ -119,19 +123,7 @@ else
     },
     {
       "lewis6991/gitsigns.nvim",
-      event = "VeryLazy",
-      config = function()
-         require('gitsigns').setup({
-           signs = {
-             add = {
-               hl = 'GitSignsAdd',
-               text = '+',
-               numhl='GitSignsAddNr',
-               linehl='GitSignsAddLn'
-             },
-           }
-         })
-      end
+      event = "VeryLazy"
     }
   }
 
