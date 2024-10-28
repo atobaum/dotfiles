@@ -137,7 +137,9 @@ _fzf_comprun() {
   esac
 }
 
-eval "$(github-copilot-cli alias -- "$0")"
+if command -v github-copilot-cli &> /dev/null; then
+  eval "$(github-copilot-cli alias -- "$0")"
+fi
 
 # kubernetes busybox
 alias bb=kubectl run busybox --image=busybox:latest --rm -it --restart=Never --command --
@@ -161,4 +163,6 @@ eval "$(zoxide init zsh)"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
-eval $(thefuck --alias)
+if command -v thefuck &> /dev/null; then
+  eval $(thefuck --alias)
+fi
