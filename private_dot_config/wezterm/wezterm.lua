@@ -94,7 +94,7 @@ config.keys = {
     key = ',',
     mods = 'SUPER',
     action = wezterm.action.SpawnCommandInNewTab {
-      cwd = wezterm.home_dir,
+      cwd = wezterm.config_dir,
       args = { 'nvim', wezterm.config_file },
     },
   },
@@ -120,6 +120,11 @@ config.keys = {
       -- Deactivate the keytable after a timeout.
       timeout_milliseconds = 1000,
     }
+  },
+  {
+    key = 'p',
+    mods = 'CMD',
+    action = wezterm.action.ActivateCommandPalette,
   },
 }
 
