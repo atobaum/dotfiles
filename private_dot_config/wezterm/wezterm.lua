@@ -16,7 +16,7 @@ config.font = wezterm.font({ family = 'JetBrains Mono' })
 config.font_size = 13
 
 -- Slightly transparent and blurred background
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
 -- Removes the title bar, leaving only the tab bar. Keeps
 -- the ability to resize by dragging the window's edges.
@@ -37,6 +37,8 @@ wezterm.on('update-status', function(window)
   -- solid arrow.
   local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 
+  local right_status_table = {}
+
   -- Grab the current window's configuration, and from it the
   -- palette (this is the combination of your chosen colour scheme
   -- including any overrides).
@@ -44,16 +46,33 @@ wezterm.on('update-status', function(window)
   local bg = color_scheme.background
   local fg = color_scheme.foreground
 
-  window:set_right_status(wezterm.format({
-    -- First, we draw the arrow...
-    { Background = { Color = 'none' } },
-    { Foreground = { Color = bg } },
-    { Text = SOLID_LEFT_ARROW },
-    -- Then we draw our text
-    { Background = { Color = bg } },
-    { Foreground = { Color = fg } },
-    { Text = ' ' .. wezterm.strftime('%a %b %-d %H:%M') .. ' ' },
-  }))
+  -- show active key table
+  local key_table_status = ""
+  local key_table_bg = bg
+  local arrow_color = fg
+
+  local active_key_table = window:active_key_table()
+  if active_key_table then
+    key_table_status = 'TABLE: ' .. active_key_table
+    key_table_bg = "#008080"  -- key table 활성화 시 주황색 배경
+
+    table.insert(right_status_table, { Background = { Color = 'none' } })
+    table.insert(right_status_table, { Foreground = { Color = key_table_bg } })
+    table.insert(right_status_table, { Text = SOLID_LEFT_ARROW })
+
+    table.insert(right_status_table, { Background = { Color = key_table_bg } })
+    table.insert(right_status_table, { Foreground = { Color = fg } })
+    table.insert(right_status_table, { Text = ' ' .. key_table_status .. ' ' })
+  end
+
+  table.insert(right_status_table, { Background = { Color = 'none' } })
+  table.insert(right_status_table, { Foreground = { Color = bg } })
+  table.insert(right_status_table, { Text = SOLID_LEFT_ARROW })
+  table.insert(right_status_table, { Background = { Color = bg } })
+  table.insert(right_status_table, { Foreground = { Color = fg } })
+  table.insert(right_status_table, { Text = ' ' .. wezterm.strftime('%a %b %-d %H:%M') .. ' ' })
+
+  window:set_right_status(wezterm.format(right_status_table))
 end
 )
 
