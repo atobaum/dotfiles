@@ -3,6 +3,8 @@ local appearnce = require 'appearance'
 
 local config = wezterm.config_builder()
 
+local act = wezterm.action
+
 -- -- Use it!
 -- if appearance.is_dark() then
 --   config.color_scheme = 'Tokyo Night'
@@ -12,8 +14,18 @@ local config = wezterm.config_builder()
 
 config.color_scheme = 'Tokyo Night'
 
-config.font = wezterm.font({ family = 'JetBrains Mono' })
+-- 가나다
+config.font = wezterm.font_with_fallback(
+  { family = 'JetBrains Mono' }
+)
 config.font_size = 13
+
+config.window_padding = {
+  left   = '10px',
+  right  = '10px',
+  top    = '20px',
+  bottom = '20px',
+}
 
 -- Slightly transparent and blurred background
 config.window_background_opacity = 0.9
@@ -105,6 +117,8 @@ config.keys = {
     -- Actually send CTRL + A key to the terminal
     action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
   },
+
+  -- multiplexer
   move_pane('j', 'Down'),
   move_pane('k', 'Up'),
   move_pane('h', 'Left'),
@@ -128,6 +142,11 @@ config.keys = {
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
   {
+    mods = "LEADER",
+    key  = "x",
+    action = wezterm.action.CloseCurrentPane { confirm = false }
+  },
+  {
     key = 'r',
     mods = 'LEADER',
     -- Activate the `resize_panes` keytable
@@ -138,13 +157,18 @@ config.keys = {
       one_shot = false,
       -- Deactivate the keytable after a timeout.
       timeout_milliseconds = 1000,
-    }
+    },
   },
+  { mods = 'LEADER', key = ']', action = act.RotatePanes "Clockwise" },
+  { mods = 'LEADER', key = '[', action = act.RotatePanes "CounterClockwise" },
+  { mods = 'LEADER', key = 'p', action = act.PaneSelect { alphabet = "1234567890" }, },
+
+  -- command palette
   {
     key = 'p',
     mods = 'CMD',
     action = wezterm.action.ActivateCommandPalette,
-  },
+  }
 }
 
 config.key_tables = {
