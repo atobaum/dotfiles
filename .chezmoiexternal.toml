@@ -1,0 +1,4 @@
+[".config/bin/toolgit"]
+  type = "git-repo"
+  url = "https://github.com/ahmetsait/toolgit.git"
+  refreshPeriod = "168h"
