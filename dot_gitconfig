@@ -1,3 +1,5 @@
+# https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
 [alias]
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 	a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
@@ -14,9 +16,20 @@
   
 [core]
   excludesfile = ~/.config/.gitignore
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  side-by-side = true
+  navigate = true
 
 [diff]
   algorithm = histogram
+  colorMoved = plain  
+  mnemonicPrefix = true  
+  renames = true
 
 [commit]
   verbose = true
@@ -37,14 +50,25 @@
 [gpg]
   program = /opt/homebrew/bin/gpg
 
+[push]
+  default = simple  
+  autoSetupRemote = true  
+  followTags = true  
+
+[fetch]  
+  prune = true  
+  pruneTags = true  
+  all = true
+
 [pull]
   # git pull하면 git pull --rebase 하기
   rebase = true
 
 [rebase]
-  autosquash = true
+  autoSquash = true
   # rebase 전후로 stash and stash pop
-  autostach = true
+  autoStach = true
+  updateRefs = true
 
 [rerere]
   # This enables rerere (”reuse recovered resolution”), which remembers how you resolved merge conflicts during a git rebase and automatically resolves conflicts for you when it can
@@ -53,3 +77,19 @@
 [merge]
   conflictstyle = zdiff3
 
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://devtools.gov-ncloud.com"]
+	provider = generic
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sorg = version:refname
+
+[help]
+  autocorrect = prompt
