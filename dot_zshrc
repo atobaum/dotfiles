@@ -89,7 +89,9 @@ eval "$(direnv hook zsh)"
 alias vim=\\nvim vvim=\\vim
 alias k='kubectl'
 alias tf='terraform'
+alias "vim apply"='echo good'
 export KUBECONFIG=~/.kube/config
+# export KUBECONFIG=~/.kube/config:~/.kube/proxmox-k3s.yaml
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 
@@ -117,8 +119,12 @@ export PATH="$PATH:$HOME/.config/bin"
 export PATH="$HOME/.config/bin/toolgit:$PATH"
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# Export nvm completion settings for zsh-nvm plugin
+# export NVM_COMPLETION=true
+# export NVM_DIR="$HOME/.nvm"
+export NVM_AUTO_USE=true
+zinit light lukechilds/zsh-nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 if [[ -f "$HOME/.zshrc_custom" ]]; then
   source "$HOME/.zshrc_custom"
@@ -164,8 +170,13 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# mysql
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 if command -v thefuck &> /dev/null; then
   eval $(thefuck --alias)
 fi
+
+export PATH="$PATH:$HOME/.local/bin"
