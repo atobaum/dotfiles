@@ -1,24 +1,31 @@
-[[snippets]]
-  description = "clear uncessary branches"
+
+[[Snippets]]
+  Description = "clear uncessary branches"
+  Output = ""
+  Tag = []
   command = "git trim  --delete 'stray' --delete 'merged-local' -p main,stage,dev"
-  output = ""
 
-[[snippets]]
-  description = "Show my public IP"
+[[Snippets]]
+  Description = "Show my public IP"
+  Output = ""
+  Tag = ["network"]
   command = "dig TXT +short ip @dns.toys"
-  output = ""
 
-[[snippets]]
-  description = "Show my public IP2"
+[[Snippets]]
+  Description = "Show my public IP2"
+  Output = ""
+  Tag = ["network"]
   command = "curl ifconfig.me"
-  output = ""
 
-[[snippets]]
-  description = "Show weather"
+[[Snippets]]
+  Description = "Show weather"
+  Output = ""
+  Tag = []
   command = "curl wttr.in"
-  output = ""
 
-[[snippets]]
-  description = "change xlsx 비대면 바우처 format"
-  command = "xlsx2csv \\(22년도\\)\\ 1월\\ 로그\\ 기록\\ 추출\\ 대상.xlsx | jq -sR 'split(\"\\n\")' | jq -r \"map(\\\"'\\\"+.+\\\"'\\\") | join(\\\",\\\")\" | pbcopy"
-  output = ""
+[[Snippets]]
+  Description = "Upgrade all brew packages"
+  Output = ""
+  Tag = ["brew", "mac"]
+  command = "brew upgrade --greedy  && brew cleanup"
+
