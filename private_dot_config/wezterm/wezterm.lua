@@ -5,6 +5,10 @@ local config = wezterm.config_builder()
 
 local act = wezterm.action
 
+config.enable_scroll_bar = true
+config.scrollback_lines = 6000
+config.min_scroll_bar_height = "2cell"
+
 -- -- Use it!
 -- if appearance.is_dark() then
 --   config.color_scheme = 'Tokyo Night'
@@ -13,6 +17,9 @@ local act = wezterm.action
 -- end
 
 config.color_scheme = 'Tokyo Night'
+config.colors = {
+  scrollbar_thumb = "#ddd"
+}
 
 -- 가나다
 config.font = wezterm.font_with_fallback(
@@ -22,7 +29,7 @@ config.font_size = 13
 
 config.window_padding = {
   left   = '10px',
-  right  = '10px',
+  right  = '20px', -- scrollbar width
   top    = '20px',
   bottom = '20px',
 }
