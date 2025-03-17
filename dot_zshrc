@@ -89,11 +89,9 @@ eval "$(direnv hook zsh)"
 alias vim=\\nvim vvim=\\vim
 alias k='kubectl'
 alias tf='terraform'
-alias "vim apply"='echo good'
 export KUBECONFIG=~/.kube/config
 # export KUBECONFIG=~/.kube/config:~/.kube/proxmox-k3s.yaml
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -149,6 +147,16 @@ _fzf_comprun() {
 if command -v github-copilot-cli &> /dev/null; then
   eval "$(github-copilot-cli alias -- "$0")"
 fi
+
+# pet cli autocomplete with ^s
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^s' pet-select
 
 # kubernetes busybox
 alias bb=kubectl run busybox --image=busybox:latest --rm -it --restart=Never --command --
