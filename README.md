@@ -12,7 +12,7 @@ chezmoi init https://github.com/atobaum/dotfiles.git
 ## Install brew packages
 
 ```shell
-brew dump
+brew bundle
 ```
 
 ## Install browsers
@@ -30,3 +30,8 @@ brew dump
   - disable spotlight
   - set up changing language to cmd + space
 - install 구름 입력기 <https://github.com/gureum/gureum>
+
+## Update Brewfile
+```shell
+brew bundle dump --force
+```
