@@ -61,8 +61,6 @@ end, function()
 	f13_mode:exit()
 end)
 
-require("modules.inputsource_aurora")
-
 -- hs.hotkey.bind({'shift'}, 'F1', hs.hints.windowHints)
 
 -- ctrl만 누르면 esc 누르고 영어로 바꾸기
