@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.arch "arm64" -}}
+/opt/homebrew/bin
+{{- else -}}
+/usr/local/bin
+{{- end -}}
