@@ -49,7 +49,7 @@
 	directory = /usr/local/Homebrew
 
 [gpg]
-  program = /usr/local/bin/gpg
+  program = {{ template "homebrew-bin" . }}/gpg
 
 [push]
   default = simple  
