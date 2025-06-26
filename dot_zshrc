@@ -1,6 +1,6 @@
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git)
+plugins=(git evalcache)
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -84,7 +84,8 @@ else
   export EDITOR='nvim'
 fi
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
+_evalcache direnv hook zsh
 
 alias vim=\\nvim vvim=\\vim
 alias k='kubectl'
@@ -144,10 +145,6 @@ _fzf_comprun() {
   esac
 }
 
-if command -v github-copilot-cli &> /dev/null; then
-  eval "$(github-copilot-cli alias -- "$0")"
-fi
-
 # pet cli autocomplete with ^s
 function pet-select() {
   BUFFER=$(pet search --query "$LBUFFER")
@@ -174,17 +171,19 @@ LC_MONETARY="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
 LC_TIME="en_US.UTF-8"
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+_evalcache starship init zsh
+_evalcache zoxide init zsh
 
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+export PATH="$HOME/.ghcup/bin/:$PATH"
 
 # mysql
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 if command -v thefuck &> /dev/null; then
-  eval $(thefuck --alias)
+  _evalcache thefuck --alias
 fi
 
 export PATH="$PATH:$HOME/.local/bin"
