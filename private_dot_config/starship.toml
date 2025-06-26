@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 [git_commit]
 commit_hash_length = 4
 tag_symbol = '🔖 '
@@ -6,3 +8,10 @@ tag_symbol = '🔖 '
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+time_format = '%T'
+utc_time_offset = 'local'
+# time_range = '10:00:00-14:00:00'
