@@ -1,0 +1,10 @@
+background-opacity = 0.6
+background-blur = 10
+
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+
+# 100 MiB in byte
+scrollback-limit = 10457600
+
+font-family = "JetBrains Mono"
