@@ -1,5 +1,8 @@
-background-opacity = 0.6
+theme = monokai vivid
+# background = #101010
+background-opacity = 0.90
 background-blur = 10
+unfocused-split-opacity = 0.83
 
 macos-auto-secure-input = true
 macos-secure-input-indication = true
@@ -8,3 +11,5 @@ macos-secure-input-indication = true
 scrollback-limit = 10457600
 
 font-family = "JetBrains Mono"
+# font-family = "D2Coding"
+font-family = "Hack Nerd Font Mono"
