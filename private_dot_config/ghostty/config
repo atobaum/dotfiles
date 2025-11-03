@@ -1,8 +1,9 @@
-theme = monokai vivid
+# theme = monokai vivid
+theme = Builtin Tango Light
 # background = #101010
 background-opacity = 0.90
 background-blur = 10
-unfocused-split-opacity = 0.83
+unfocused-split-opacity = 0.95
 
 macos-auto-secure-input = true
 macos-secure-input-indication = true
