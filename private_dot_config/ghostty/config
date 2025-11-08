@@ -14,3 +14,5 @@ scrollback-limit = 10457600
 font-family = "JetBrains Mono"
 # font-family = "D2Coding"
 font-family = "Hack Nerd Font Mono"
+
+quit-after-last-window-closed = true
