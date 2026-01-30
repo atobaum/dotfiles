@@ -1,37 +1,49 @@
-## Install Homebrew and dotfiles
+# Dotfiles
+
+macOS 개발 환경 설정을 위한 dotfiles. [chezmoi](https://www.chezmoi.io/)로 관리됩니다.
+
+## 포함된 설정
+
+- **Shell**: zsh (starship prompt, zoxide, fzf)
+- **Terminal**: Ghostty
+- **Editor**: Neovim
+- **Git**: gitconfig, git-trim
+- **Window Manager**: Hammerspoon
+- **Keyboard**: Kanata
+
+## 설치
 
 ```shell
-# Install Homebrew
+# Homebrew 설치
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# chezmoi 설치 및 dotfiles 적용
 brew install chezmoi
-
-chezmoi init https://github.com/atobaum/dotfiles.git
+chezmoi init --apply https://github.com/atobaum/dotfiles.git
 ```
 
-## Install brew packages
+## Brew 패키지 설치
 
 ```shell
 brew bundle
 ```
 
-## Install browsers
+## macOS 설정
 
-- Chrome Browser
-- Arc Browser
+### 키보드
+- 키보드 단축키에서 Spotlight 비활성화
+- 입력 소스 전환: `Cmd + Space`
+- [구름 입력기](https://github.com/gureum/gureum) 설치
 
-## Configure Mac
+### 폰트
+- Nerd Font 설치 (Brewfile에 포함)
 
-- install nerd font
+### 브라우저
+- Chrome
+- Arc
 
-- install nvm `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`
-- install keyboard
-- keyboard shortcut
-  - disable spotlight
-  - set up changing language to cmd + space
-- install 구름 입력기 <https://github.com/gureum/gureum>
+## Brewfile 업데이트
 
-## Update Brewfile
 ```shell
 brew bundle dump --force
 ```
