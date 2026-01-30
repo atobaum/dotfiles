@@ -21,18 +21,17 @@ end
 
 local f13_mode = hs.hotkey.modal.new()
 
--- f13_mode:bind({}, "space", toggleApp("WezTerm"))
 f13_mode:bind({}, "space", toggleApp("Ghostty"))
 f13_mode:bind({}, "b", toggleApp("Firefox"))
 f13_mode:bind({}, "c", toggleApp("Google Chrome"))
 f13_mode:bind({}, "n", toggleApp("Obsidian"))
--- f13_mode:bind({}, "v", toggleApp("Visual Studio Code"))
-f13_mode:bind({}, "v", toggleApp("Cursor"))
+f13_mode:bind({}, "v", toggleApp("Visual Studio Code"))
 f13_mode:bind({}, "s", toggleApp("Slack"))
 f13_mode:bind({}, "m", toggleApp("Spark Desktop"))
 f13_mode:bind({}, "a", toggleApp("ChatGPT"))
 f13_mode:bind({}, "h", toggleApp("Heynote"))
 f13_mode:bind({}, "y", toggleApp("YouTube Music"))
+f13_mode:bind({}, "t", toggleApp("Akiflow"))
 
 local chooser = hs.chooser.new(function(choice)
 	if choice.type == "bookmark" then

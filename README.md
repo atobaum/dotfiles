@@ -44,6 +44,16 @@ brew bundle
 
 ## Brewfile 업데이트
 
+현재 설치된 패키지로 Brewfile 갱신:
+
 ```shell
+brew bundle dump --force --file=~/.local/share/chezmoi/Brewfile
+```
+
+또는 chezmoi source 디렉토리에서:
+
+```shell
+cd ~/.local/share/chezmoi
 brew bundle dump --force
+chezmoi apply
 ```

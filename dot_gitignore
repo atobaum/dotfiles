@@ -23,3 +23,6 @@ node_modules
 
 # asdf
 .tool-versions
+
+# for claude
+*.local.md
