@@ -1,4 +1,5 @@
 -- 위치 서비스 권한 요청 (WiFi SSID 접근에 필요)
+print("[modules] wifi_watcher loaded")
 hs.location.start()
 
 local companySSIDs = { ["MODUSIGN-SEOUL"] = true, ["MODUSIGN-Guest"] = true }

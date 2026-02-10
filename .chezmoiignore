@@ -2,3 +2,5 @@ README.md
 Brewfile
 .pre-commit-config.yaml
 .github
+.git
+.omz
