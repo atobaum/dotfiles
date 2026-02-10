@@ -1,0 +1,27 @@
+# === OS ===
+.DS_Store
+Desktop.ini
+._*
+Thumbs.db
+.Trashes
+
+# === Editors ===
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# === Logs ===
+*.log
+logs/
+
+# === Version Managers ===
+.tool-versions
+.node-version
+.python-version
+
+# === Claude Code ===
+*.local.md
+*.local.json
+.omc/
