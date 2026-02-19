@@ -5,7 +5,7 @@ hs.location.start()
 local companySSIDs = { ["MODUSIGN-SEOUL"] = true, ["MODUSIGN-Guest"] = true }
 local homeSSIDs = { ["gilsang"] = true }
 
-hs.wifi.watcher.new(function()
+wifiWatcher = hs.wifi.watcher.new(function()
 	local ssid = hs.wifi.currentNetwork()
 	print("[WiFi] SSID changed: " .. (ssid or "nil"))
 
@@ -20,4 +20,5 @@ hs.wifi.watcher.new(function()
 		hs.audiodevice.defaultOutputDevice():setMuted(false)
 		hs.alert.show("집 WiFi: 스피커 켜짐")
 	end
-end):start()
+end)
+wifiWatcher:start()

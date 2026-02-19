@@ -8,21 +8,79 @@ Hammerspoon (`~/.hammerspoon`) configuration for macOS automation. Hammerspoon i
 
 ## Reload
 
-- **Shift+F1** reloads the config (defined in `init.lua:102`)
+- **Shift+F1** reloads the config (defined in `init.lua`)
 - Or call `hs.reload()` from the Hammerspoon console
 - After any code change, reload is required — there is no hot-reload
 
 ## Architecture
 
-**`init.lua`** — All features in a single file:
-- **Ctrl-as-Escape**: Solo ctrl tap → Escape + switch to English input. Mouse click cancels solo-ctrl detection.
-- **F13 App Switcher**: F13 hold + key → toggle app (Space=Ghostty, B=Firefox, etc.). Uses `hs.hotkey.modal` with a 3-second watchdog to prevent stuck state.
-- **WiFi Watcher**: Launches apps and controls mute based on work/home WiFi network.
+**`init.lua`** — Thin entry point that loads modules:
+```lua
+require("modules/wifi_watcher")
+require("modules/ctrl_escape")
+require("modules/app_switcher")
+```
 
-**`modules/`** — Unused modules storage.
-- `inputsource_aurora.lua`: Green overlay when non-English input source is active. Currently not wired up.
+**`modules/`** — Active feature modules:
+- `ctrl_escape.lua`: Solo ctrl tap → Escape + switch to English input. Mouse click cancels solo-ctrl detection. Uses global `eventtap` variables (`ctrl_eventtab`, `ctrl_eventtab_2`) to prevent GC.
+- `app_switcher.lua`: F13 hold + key → toggle app. Shows "F13 Mode" overlay indicator. Uses `hs.hotkey.modal` with a 3-second watchdog timer to prevent stuck state.
+- `wifi_watcher.lua`: Launches apps and controls mute based on WiFi network (work/home).
 
 **`Spoons/`** — Third-party plugin directory (empty).
+
+### F13 App Bindings (`modules/app_switcher.lua`)
+
+| Key | App |
+|-----|-----|
+| Space | Ghostty |
+| B | Firefox |
+| C | Google Chrome |
+| N | Obsidian |
+| V | Visual Studio Code |
+| S | Slack |
+| A | ChatGPT |
+| H | Heynote |
+| Y | YouTube Music |
+| T | Akiflow |
+
+### WiFi Networks (`modules/wifi_watcher.lua`)
+
+- **Work** (`MODUSIGN-SEOUL`, `MODUSIGN-Guest`): Launch Slack + 1Password, mute audio
+- **Home** (`gilsang`): Unmute audio
+
+## Version Control (chezmoi)
+
+This project is managed with [chezmoi](https://www.chezmoi.io/) for dotfiles versioning.
+
+- **Source directory**: `~/.local/share/chezmoi/dot_hammerspoon/`
+- **Remote**: `https://github.com/atobaum/dotfiles.git`
+- Edit files directly in `~/.hammerspoon/` (working directory), then sync back to source.
+
+### Workflow: Sync, Review, and Commit Changes
+
+```bash
+# 1. Sync working directory changes back to chezmoi source
+chezmoi re-add ~/.hammerspoon/
+
+# 2. Review what changed before committing
+chezmoi git status
+chezmoi git diff --staged
+
+# 3. Stage and commit with a descriptive message based on the actual diff
+chezmoi git add -- dot_hammerspoon/
+chezmoi git commit -- -m "feat(hammerspoon): ..."
+chezmoi git push
+```
+
+**Commit message tips:**
+- Read the diff first — don't guess the message from memory
+- Use conventional commits: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`
+- Be specific: `feat: add Akiflow and Heynote to F13 app switcher` not `update config`
+
+### Notes
+- After editing `~/.hammerspoon/` files, always run `chezmoi re-add` to sync to source before committing.
+- After editing source directly, run `chezmoi apply` to apply changes to the working directory.
+- Use `chezmoi diff` to preview pending changes before committing.
 
 ## Conventions
 
@@ -32,11 +90,20 @@ Hammerspoon (`~/.hammerspoon`) configuration for macOS automation. Hammerspoon i
 
 ## Hammerspoon/Lua Lifecycle Gotchas
 
-### GC (Garbage Collection) — Always store references
-- If you don't store a reference (e.g. `hs.eventtap.new():start()` without assignment), the object becomes eligible for GC. It will silently stop working minutes to hours later.
-- **Always** store in a module-level variable: `local myTap = hs.eventtap.new():start()`.
-- Same applies to all long-lived objects: `hs.timer`, `hs.canvas`, `hs.chooser`, etc.
-- GC timing is unpredictable — timer callbacks, canvas creation/deletion, etc. can trigger collection of unreferenced objects in other modules.
+### GC (Garbage Collection) — Always capture in variables
+- Lua GC destroys any object it believes is no longer in use. Timing is unpredictable (minutes to hours), based on how active your Lua code is.
+- A variable that only exists inside a function/loop/scope is available for GC as soon as that scope finishes — **including `init.lua` itself**, which is a single scope that finishes after the final line runs.
+- If you create objects in `init.lua` without capturing them in a variable, they will be silently destroyed later:
+  ```lua
+  -- BAD: uncaptured, will be GC'd unpredictably
+  hs.pathwatcher.new(.....):start()
+
+  -- GOOD: captured in global, survives until reload/quit
+  myWatcher = hs.pathwatcher.new(.....):start()
+  ```
+- Global variables never go out of scope, so they survive until config reload or Hammerspoon quit.
+- Same applies to all long-lived objects: `hs.eventtap`, `hs.timer`, `hs.canvas`, `hs.chooser`, `hs.pathwatcher`, etc.
+- **Console note:** Each line entered in the Hammerspoon Console creates a distinct scope that closes on Enter — `local` variables become immediately inaccessible.
 
 ### Lua Variable Scope and Closures
 - Closures capture **variable bindings (references), not values**. Multiple closures referencing the same local share its value.
