@@ -3,6 +3,7 @@ export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 setopt autocd
 autoload -U compinit; compinit
+zmodload zsh/zprof
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -47,38 +48,8 @@ export PATH="$PATH:$HOME/.config/bin"
 # toolgit
 export PATH="$HOME/.config/bin/toolgit:$PATH"
 
-############################################
-# Start of NVM config
-############################################
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version
-    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-############################################
-# End of NVM config
-############################################
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 if [[ -f "$HOME/.zshrc_custom" ]]; then
   source "$HOME/.zshrc_custom"
@@ -86,6 +57,8 @@ fi
 
 source <(fzf --zsh)
 # eval "$(rbenv init - zsh)"
+#
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 
@@ -136,7 +109,10 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 ############################################
 alias vim=\\nvim vvim=\\vim
 alias k='kubectl'
+alias kctx='kubie ctx'
 alias tf='terraform'
+alias cld='claude'
+alias lgit='lazygit'
 # kubernetes busybox
 alias bb=kubectl run busybox --image=busybox:latest --rm -it --restart=Never --command --
 ############################################
@@ -176,9 +152,15 @@ export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 export PATH="$PATH:$HOME/.local/bin"
 
+# bun
+export PATH="$HOME/.bun/bin:$PATH"
+
 # rm-safely - Safe rm command
 source "/Users/abel/.rm-safely" >/dev/null 2>&1
 
 # terraform cache
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
+
+# repo switcher
+source ~/.config/bin/repo.zsh
