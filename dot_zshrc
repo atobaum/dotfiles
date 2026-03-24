@@ -19,8 +19,8 @@ antidote load
 # End of package manager
 #########################
 
-export ZSH="$HOME/.oh-my-zsh"
-source "$ZSH"/oh-my-zsh.sh
+# export ZSH="$HOME/.oh-my-zsh"
+# source "$ZSH"/oh-my-zsh.sh
 
 # pyenv
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -164,3 +164,10 @@ export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 # repo switcher
 source ~/.config/bin/repo.zsh
+
+alias gc="git commit"
+alias gcmsg="git commit -m"
+alias gsw="git switch"
+alias gswc="git switch -c"
+alias gaa="git add ."
+alias gst="git status"
