@@ -83,9 +83,15 @@ else
       end,
     },
     {
-      -- synctac highlighting
+      -- parser management only; highlighting via built-in vim.treesitter
       "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate"
+      build = ":TSUpdate",
+      config = function()
+        require("nvim-treesitter").setup({
+          ensure_installed = { "c", "cpp", "lua", "bash", "hcl", "javascript", "typescript", "tsx", "yaml" },
+          auto_install = true,
+        })
+      end,
     },
     {
       -- file search
@@ -129,7 +135,6 @@ else
 
   require("lazy").setup(plugins)
 
-  require("plugins/nvim-treesitter")
   require("plugins/telescope")
   require("plugins/indent-blankline")
 

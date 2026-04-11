@@ -43,3 +43,10 @@ vim.opt.smartcase = true
 
 require('plugins')
 require("core/keymapping")
+
+-- built-in treesitter highlighting
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
