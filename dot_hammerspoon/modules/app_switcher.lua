@@ -20,7 +20,7 @@ local function toggleApp(name)
 		end
 
 		hs.application.launchOrFocus(name)
-		centerMouse()
+		-- centerMouse()
 	end
 end
 
@@ -95,6 +95,7 @@ f13_mode:bind({}, "a", toggleApp("ChatGPT"))
 f13_mode:bind({}, "h", toggleApp("Heynote"))
 f13_mode:bind({}, "y", toggleApp("YouTube Music"))
 f13_mode:bind({}, "t", toggleApp("Akiflow"))
+f13_mode:bind({}, "g", toggleApp("Cmux"))
 
 hs.hotkey.bind({}, "f13", function()
 	f13_mode:enter()
