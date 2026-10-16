@@ -96,6 +96,7 @@ f13_mode:bind({}, "h", toggleApp("Heynote"))
 f13_mode:bind({}, "y", toggleApp("YouTube Music"))
 f13_mode:bind({}, "t", toggleApp("Akiflow"))
 f13_mode:bind({}, "g", toggleApp("Cmux"))
+f13_mode:bind({}, "o", toggleApp("Orca"))
 
 hs.hotkey.bind({}, "f13", function()
 	f13_mode:enter()
