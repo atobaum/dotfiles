@@ -13,11 +13,55 @@ antidote load
 # End of package manager
 #########################
 
+# omz lib에서 쓰던 설정
+## history
+setopt hist_expire_dups_first hist_ignore_dups hist_ignore_space hist_verify share_history
+setopt interactive_comments
+
+## completion (menu select는 fzf-tab과 충돌해서 제외)
+unsetopt menu_complete flowcontrol
+setopt auto_menu complete_in_word always_to_end
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
+
+## key bindings
+autoload -U up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[Z" reverse-menu-complete
+
+## directories
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -- -='cd -'
+
+
+# git aliases (omz git 플러그인에서 쓰던 것만)
+alias gaa='git add --all'
+alias gc='git commit --verbose'
+alias gcmsg='git commit --message'
+alias gsw='git switch'
+
 # pyenv
 # export PYENV_ROOT="$HOME/.pyenv"
 # [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+
+#########################
+# Dev tool version managers
+#########################
+# export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(mise activate zsh)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -47,9 +91,6 @@ if [[ -f "$HOME/.zshrc_custom" ]]; then
 fi
 
 source <(fzf --zsh)
-# eval "$(rbenv init - zsh)"
-#
-eval "$(fnm env --use-on-cd --shell zsh)"
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 
@@ -170,11 +211,9 @@ export PATH="$PATH:$HOME/.local/bin"
 # bun
 export PATH="$HOME/.bun/bin:$PATH"
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # terraform cache
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
-
 
 # repo switcher
 source ~/.config/bin/repo.zsh
