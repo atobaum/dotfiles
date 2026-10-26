@@ -48,6 +48,7 @@ alias -- -='cd -'
 alias gaa='git add --all'
 alias gc='git commit --verbose'
 alias gcmsg='git commit --message'
+alias gst='git status'
 alias gsw='git switch'
 
 # pyenv
